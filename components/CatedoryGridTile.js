@@ -3,7 +3,7 @@ import { Pressable, View, Text, StyleSheet, Platform } from "react-native";
 // *{pressed} - should used a function inside style for receive pressed prop
 // and use it for installation pressed effect on iOS;
 
-const CategoryGridTile = ({ title, color }) => {
+const CategoryGridTile = ({ title, color, onPress }) => {
   return (
     <View style={styles.gridItem}>
       <Pressable
@@ -12,6 +12,7 @@ const CategoryGridTile = ({ title, color }) => {
           styles.buttonContainer,
           pressed ? styles.buttonPressed : null,
         ]} // comment above
+        onPress={onPress}
       >
         <View style={[styles.innerContainer, { backgroundColor: color }]}>
           <Text style={styles.title}>{title}</Text>

@@ -2,11 +2,22 @@ import { FlatList } from "react-native";
 import CategoryGridTile from "../components/CatedoryGridTile";
 import { CATEGORIES } from "../data/data";
 
-const renderCategoryItem = ({ item }) => (
-  <CategoryGridTile title={item.title} color={item.color} />
-);
+const CategoriesScreen = ({ navigation }) => {
+  const renderCategoryItem = ({ item }) => {
+    function pressHandler() {
+      navigation.navigate('MealsOverview', { 
+        categoryId: item.id
+      });
+    }
+    return (
+      <CategoryGridTile
+        title={item.title}
+        color={item.color}
+        onPress={pressHandler}
+      />
+    );
+  };
 
-const CategoriesScreen = () => {
   return (
     <FlatList
       data={CATEGORIES}
