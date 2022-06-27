@@ -1,11 +1,31 @@
-import { Image, ScrollView, Text, StyleSheet } from "react-native";
+import { useLayoutEffect } from "react";
+import { Image, ScrollView, Text, StyleSheet, Button } from "react-native";
+import IconButton from "../components/IconButton";
 import MealDetails from "../components/MealDetails";
 import Paper from "../components/Paper";
 
 import { MEALS } from "../data/data";
 
-const MealDetailScreen = ({ route }) => {
+const MealDetailScreen = ({ route, navigation }) => {
   const { mealId } = route.params;
+
+  const headerButtonPressedHandler = () => {
+    console.log("Pressed!");
+  };
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => {
+        return (
+          <IconButton
+            onPress={headerButtonPressedHandler}
+            icon="star"
+            color="white"
+          />
+        );
+      },
+    });
+  }, [navigation, headerButtonPressedHandler]);
 
   const selectedMeal = MEALS.find((meal) => meal.id === mealId);
 
